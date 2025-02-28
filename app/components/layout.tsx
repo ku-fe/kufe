@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect } from 'react';
 import { cn } from '~/libs/utils/cn';
 import { Footer } from './footer';
