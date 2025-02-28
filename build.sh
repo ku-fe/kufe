@@ -1,5 +1,5 @@
 #!/bin/sh
 cd ../
 mkdir output
-cp -R ./kufe/* ./output
-cp -R ./output ./kufe/
+cp -R ./kufe/* ./build
+cp -R ./build ./kufe/
