@@ -245,7 +245,9 @@ export default function Jobs() {
               placeholder="Search by job title, company, or skill..."
               className={cn('pl-10 h-12')}
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+              }}
             />
           </div>
 
@@ -269,7 +271,9 @@ export default function Jobs() {
                   'rounded-md border border-input bg-background h-9 px-3 text-sm',
                 )}
                 value={selectedLocation}
-                onChange={(e) => setSelectedLocation(e.target.value)}
+                onChange={(e) => {
+                  setSelectedLocation(e.target.value);
+                }}
               >
                 {locations.map((location) => (
                   <option key={location} value={location}>
@@ -283,7 +287,9 @@ export default function Jobs() {
                   'rounded-md border border-input bg-background h-9 px-3 text-sm',
                 )}
                 value={selectedExperience}
-                onChange={(e) => setSelectedExperience(e.target.value)}
+                onChange={(e) => {
+                  setSelectedExperience(e.target.value);
+                }}
               >
                 {experienceLevels.map((level) => (
                   <option key={level} value={level}>
@@ -297,7 +303,9 @@ export default function Jobs() {
                   'rounded-md border border-input bg-background h-9 px-3 text-sm',
                 )}
                 value={selectedEmploymentType}
-                onChange={(e) => setSelectedEmploymentType(e.target.value)}
+                onChange={(e) => {
+                  setSelectedEmploymentType(e.target.value);
+                }}
               >
                 {employmentTypes.map((type) => (
                   <option key={type} value={type}>
@@ -316,7 +324,9 @@ export default function Jobs() {
                   'rounded-md border border-input bg-background h-9 px-3 text-sm',
                 )}
                 value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
+                onChange={(e) => {
+                  setSortBy(e.target.value);
+                }}
               >
                 {sortOptions.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -342,7 +352,9 @@ export default function Jobs() {
                 className={cn(
                   'ml-1 text-muted-foreground hover:text-foreground',
                 )}
-                onClick={() => setSelectedLocation('All locations')}
+                onClick={() => {
+                  setSelectedLocation('All locations');
+                }}
               >
                 ×
               </button>
@@ -356,7 +368,9 @@ export default function Jobs() {
                 className={cn(
                   'ml-1 text-muted-foreground hover:text-foreground',
                 )}
-                onClick={() => setSelectedExperience('All levels')}
+                onClick={() => {
+                  setSelectedExperience('All levels');
+                }}
               >
                 ×
               </button>
@@ -370,7 +384,9 @@ export default function Jobs() {
                 className={cn(
                   'ml-1 text-muted-foreground hover:text-foreground',
                 )}
-                onClick={() => setSelectedEmploymentType('All types')}
+                onClick={() => {
+                  setSelectedEmploymentType('All types');
+                }}
               >
                 ×
               </button>
@@ -442,7 +458,9 @@ export default function Jobs() {
                       'absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-gray-600 transition-colors hover:bg-white',
                       savedJobs.includes(job.id) ? 'text-primary' : '',
                     )}
-                    onClick={() => toggleSaveJob(job.id)}
+                    onClick={() => {
+                      toggleSaveJob(job.id);
+                    }}
                     aria-label={
                       savedJobs.includes(job.id) ? 'Unsave job' : 'Save job'
                     }
