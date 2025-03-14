@@ -35,7 +35,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <QueryProvider>{children}</QueryProvider>
+        {children}
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -44,7 +44,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <QueryProvider>
+      <Layout>
+        <Outlet />
+      </Layout>
+    </QueryProvider>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

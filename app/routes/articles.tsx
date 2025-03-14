@@ -1,6 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
 import { Search } from 'lucide-react';
-import { useSearchParams } from 'react-router';
+import { useLoaderData } from 'react-router';
 import { Layout } from '~/components/layout';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
@@ -18,36 +17,25 @@ export function meta() {
   ];
 }
 
+function mapArticleToUI(article: Article) {
+  return {
+    id: article.id,
+    title: article.title,
+    description: article.description,
+    author: article.submitted_by,
+    date: article.submitted_at,
+    tags: article.categories,
+    thumbnail: article.image_url,
+  };
+}
+
+export async function loader() {
+  const articles = await getArticles();
+  return { articles: articles.map(mapArticleToUI) };
+}
+
 export default function Articles() {
-  const [searchParams] = useSearchParams();
-  const search = searchParams.get('search') || undefined;
-  const sort = searchParams.get('sort') as
-    | 'latest'
-    | 'popular'
-    | 'featured'
-    | undefined;
-  const tags = searchParams.getAll('tags');
-
-  const { data: articles = [], isLoading } = useQuery({
-    queryKey: ['articles', search, sort, tags],
-    queryFn: () => getArticles({ search, sort, tags }),
-  });
-
-  console.log(articles);
-
-  if (isLoading) {
-    return (
-      <Layout>
-        <div className={cn('container mx-auto max-w-7xl')}>
-          <div className={cn('flex h-96 items-center justify-center')}>
-            <div className={cn('text-lg text-muted-foreground')}>
-              Loading articles...
-            </div>
-          </div>
-        </div>
-      </Layout>
-    );
-  }
+  const { articles } = useLoaderData<typeof loader>();
 
   return (
     <Layout>
@@ -84,7 +72,7 @@ export default function Articles() {
 
         {/* Articles Grid */}
         <div className={cn('grid gap-6 md:grid-cols-2 lg:grid-cols-3')}>
-          {articles.map((article: Article) => (
+          {articles.map((article) => (
             <article
               key={article.id}
               className={cn(
@@ -107,7 +95,7 @@ export default function Articles() {
               </div>
               <div className={cn('flex flex-col p-6')}>
                 <div className={cn('mb-4 flex items-center gap-2')}>
-                  {article.tags.map((tag: string) => (
+                  {article.tags.map((tag) => (
                     <span
                       key={tag}
                       className={cn(
@@ -125,21 +113,13 @@ export default function Articles() {
                 >
                   {article.title}
                 </h2>
-                <p className={cn('mb-4 flex-grow text-muted-foreground')}>
-                  {article.excerpt}
-                </p>
-                <div
+                <p
                   className={cn(
-                    'flex items-center justify-between text-sm text-muted-foreground',
+                    'mb-4 flex-grow text-muted-foreground line-clamp-3',
                   )}
                 >
-                  <span>{article.author}</span>
-                  <div className={cn('flex items-center gap-2')}>
-                    <span>{article.date}</span>
-                    <span>•</span>
-                    <span>{article.read_time}</span>
-                  </div>
-                </div>
+                  {article.description}
+                </p>
               </div>
             </article>
           ))}

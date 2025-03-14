@@ -1,19 +1,12 @@
 export interface Article {
   id: number;
+  url: string;
   title: string;
-  excerpt: string;
-  content: string;
-  author: string;
-  date: string;
-  read_time: string;
-  tags: string[];
-  thumbnail: string;
+  description: string;
+  image_url: string;
+  submitted_by: string;
+  submitted_at: string;
+  channel_id: string;
   created_at: string;
-  updated_at: string;
-}
-
-export interface ArticleFilters {
-  search?: string;
-  sort?: 'latest' | 'popular' | 'featured';
-  tags?: string[];
+  categories: string[];
 }
