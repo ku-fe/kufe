@@ -1,4 +1,4 @@
-import { cn } from '~/libs/utils/cn';
+import { cn } from '~/utils/cn';
 import { Button } from './ui/button';
 
 const decorativeElements = [

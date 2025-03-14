@@ -1,4 +1,4 @@
-import { cn } from '~/libs/utils/cn';
+import { cn } from '~/utils/cn';
 import { Footer } from './footer';
 import { Header } from './header';
 import { ThemeProvider } from './theme-provider';

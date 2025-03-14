@@ -5,7 +5,7 @@ import { Badge } from '~/components/ui/badge';
 import { Button } from '~/components/ui/button';
 import { Card, CardContent, CardFooter } from '~/components/ui/card';
 import { Input } from '~/components/ui/input';
-import { cn } from '~/libs/utils/cn';
+import { cn } from '~/utils/cn';
 
 // Mock data for initial development
 const jobListings = [

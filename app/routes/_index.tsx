@@ -2,7 +2,7 @@ import { FeatureCards } from '~/components/feature-cards';
 import { HeroSection } from '~/components/hero-section';
 import { LatestActivities } from '~/components/latest-activities';
 import { Layout } from '~/components/layout';
-import { cn } from '~/libs/utils/cn';
+import { cn } from '~/utils/cn';
 
 export function meta() {
   return [

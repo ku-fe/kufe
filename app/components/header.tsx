@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { cn } from '~/libs/utils/cn';
+import { cn } from '~/utils/cn';
 import { ThemeToggle } from './theme-toggle';
 import { Button } from './ui/button';
 

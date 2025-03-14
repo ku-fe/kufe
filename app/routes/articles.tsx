@@ -1,36 +1,12 @@
+import { useQuery } from '@tanstack/react-query';
 import { Search } from 'lucide-react';
+import { useSearchParams } from 'react-router';
 import { Layout } from '~/components/layout';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
-import { cn } from '~/libs/utils/cn';
-
-// Mock data for initial development
-const articles = [
-  {
-    id: 1,
-    title: 'Modern React Patterns in 2025',
-    excerpt:
-      'Explore the latest React patterns and best practices that will shape frontend development in 2025.',
-    author: 'Sarah Chen',
-    date: '2024-02-27',
-    readTime: '5 min read',
-    tags: ['React', 'Frontend', 'Best Practices'],
-    thumbnail: 'https://placehold.co/600x400/1a1a1a/ffffff?text=React+Patterns',
-  },
-  {
-    id: 2,
-    title: 'Building Performant Next.js Applications',
-    excerpt:
-      'Learn how to optimize your Next.js applications for better performance and user experience.',
-    author: 'Alex Kim',
-    date: '2024-02-26',
-    readTime: '7 min read',
-    tags: ['Next.js', 'Performance', 'Web Development'],
-    thumbnail:
-      'https://placehold.co/600x400/1a1a1a/ffffff?text=Next.js+Performance',
-  },
-  // Add more mock articles as needed
-];
+import { getArticles } from '~/libs/supabase/articles';
+import type { Article } from '~/libs/supabase/types';
+import { cn } from '~/utils/cn';
 
 export function meta() {
   return [
@@ -43,6 +19,36 @@ export function meta() {
 }
 
 export default function Articles() {
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get('search') || undefined;
+  const sort = searchParams.get('sort') as
+    | 'latest'
+    | 'popular'
+    | 'featured'
+    | undefined;
+  const tags = searchParams.getAll('tags');
+
+  const { data: articles = [], isLoading } = useQuery({
+    queryKey: ['articles', search, sort, tags],
+    queryFn: () => getArticles({ search, sort, tags }),
+  });
+
+  console.log(articles);
+
+  if (isLoading) {
+    return (
+      <Layout>
+        <div className={cn('container mx-auto max-w-7xl')}>
+          <div className={cn('flex h-96 items-center justify-center')}>
+            <div className={cn('text-lg text-muted-foreground')}>
+              Loading articles...
+            </div>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <div className={cn('container mx-auto max-w-7xl')}>
@@ -78,7 +84,7 @@ export default function Articles() {
 
         {/* Articles Grid */}
         <div className={cn('grid gap-6 md:grid-cols-2 lg:grid-cols-3')}>
-          {articles.map((article) => (
+          {articles.map((article: Article) => (
             <article
               key={article.id}
               className={cn(
@@ -101,7 +107,7 @@ export default function Articles() {
               </div>
               <div className={cn('flex flex-col p-6')}>
                 <div className={cn('mb-4 flex items-center gap-2')}>
-                  {article.tags.map((tag) => (
+                  {article.tags.map((tag: string) => (
                     <span
                       key={tag}
                       className={cn(
@@ -131,7 +137,7 @@ export default function Articles() {
                   <div className={cn('flex items-center gap-2')}>
                     <span>{article.date}</span>
                     <span>•</span>
-                    <span>{article.readTime}</span>
+                    <span>{article.read_time}</span>
                   </div>
                 </div>
               </div>

@@ -1,6 +1,6 @@
 import { ExternalLink } from 'lucide-react';
 import { Link } from 'react-router';
-import { cn } from '../libs/utils/cn';
+import { cn } from '../utils/cn';
 import { Button } from './ui/button';
 
 const quickLinks = [

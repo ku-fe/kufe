@@ -8,6 +8,7 @@ import {
 } from 'react-router';
 
 import type { Route } from './+types/root';
+import { QueryProvider } from './providers/query-provider';
 
 import './app.css';
 
@@ -34,7 +35,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <QueryProvider>{children}</QueryProvider>
         <ScrollRestoration />
         <Scripts />
       </body>

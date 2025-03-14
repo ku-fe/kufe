@@ -1,7 +1,7 @@
 import * as TabsPrimitive from '@radix-ui/react-tabs';
 import type * as React from 'react';
 
-import { cn } from '~/libs/utils/cn';
+import { cn } from '~/utils/cn';
 
 function Tabs({
   className,

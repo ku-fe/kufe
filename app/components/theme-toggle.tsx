@@ -1,6 +1,6 @@
 import { Moon, Sun } from 'lucide-react';
 import { useCallback } from 'react';
-import { cn } from '~/libs/utils/cn';
+import { cn } from '~/utils/cn';
 import { useTheme } from './theme-provider';
 import { Button } from './ui/button';
 
