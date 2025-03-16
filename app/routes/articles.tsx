@@ -1,5 +1,5 @@
 import { Search } from 'lucide-react';
-import { useLoaderData } from 'react-router';
+import { Form, useLoaderData, useSearchParams, useSubmit } from 'react-router';
 import { Layout } from '~/components/layout';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
@@ -29,13 +29,30 @@ function mapArticleToUI(article: Article) {
   };
 }
 
-export async function loader() {
-  const articles = await getArticles();
-  return { articles: articles.map(mapArticleToUI) };
+export async function loader({ request }: { request: Request }) {
+  const url = new URL(request.url);
+  const searchQuery = url.searchParams.get('q') || undefined;
+  const articles = await getArticles(searchQuery);
+  return { articles: articles.map(mapArticleToUI), searchQuery };
 }
 
 export default function Articles() {
-  const { articles } = useLoaderData<typeof loader>();
+  const { articles, searchQuery } = useLoaderData<typeof loader>();
+  const [searchParams] = useSearchParams();
+  const submit = useSubmit();
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const searchQuery = formData.get('q')?.toString().trim();
+
+    if (!searchQuery) {
+      submit(null);
+      return;
+    }
+
+    submit(event.currentTarget);
+  };
 
   return (
     <Layout>
@@ -51,23 +68,28 @@ export default function Articles() {
 
         {/* Search and Filter Section */}
         <div className={cn('mb-8 flex flex-wrap items-center gap-4')}>
-          <div className={cn('relative flex-1')}>
-            <Search
-              className={cn(
-                'absolute left-3 top-2.5 h-5 w-5 text-muted-foreground',
-              )}
-            />
-            <Input
-              type="search"
-              placeholder="Search articles..."
-              className={cn('pl-10')}
-            />
-          </div>
-          <div className={cn('flex gap-2')}>
-            <Button variant="outline">Latest</Button>
-            <Button variant="outline">Popular</Button>
-            <Button variant="outline">Featured</Button>
-          </div>
+          <Form
+            className={cn('relative flex flex-1 gap-2')}
+            onSubmit={handleSubmit}
+          >
+            <div className={cn('relative flex-1')}>
+              <Search
+                className={cn(
+                  'absolute left-3 top-2.5 h-5 w-5 text-muted-foreground',
+                )}
+              />
+              <Input
+                type="search"
+                name="q"
+                placeholder="Search articles..."
+                className={cn('pl-10')}
+                defaultValue={searchParams.get('q') || ''}
+              />
+            </div>
+            <Button type="submit" variant="outline">
+              Search
+            </Button>
+          </Form>
         </div>
 
         {/* Articles Grid */}
