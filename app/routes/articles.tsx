@@ -9,10 +9,10 @@ import { cn } from '~/utils/cn';
 
 export function meta() {
   return [
-    { title: 'Articles - webKUFE' },
+    { title: 'Articles - KUFE' },
     {
       name: 'description',
-      content: 'Discover insightful articles from the webKUFE community.',
+      content: 'Discover insightful articles from the KUFE community.',
     },
   ];
 }
