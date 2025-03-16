@@ -54,7 +54,7 @@ export function HeroSection() {
                       'text-8xl font-bold text-pink-500 dark:text-pink-400',
                     )}
                   >
-                    WEB
+                    KUFE
                   </div>
                   <div
                     className={cn(

@@ -36,9 +36,8 @@ export function Footer() {
               className={cn('flex items-center gap-2 font-semibold')}
             >
               <span className={cn('text-xl font-bold text-emerald-500')}>
-                web
+                KUFE
               </span>
-              <span className={cn('text-xl font-bold')}>KUFE</span>
             </Link>
             <p
               className={cn(
@@ -121,7 +120,7 @@ export function Footer() {
             'mt-8 border-t border-border/40 pt-8 text-center text-sm text-muted-foreground w-full',
           )}
         >
-          © {new Date().getFullYear()} webKUFE. All rights reserved.
+          © {new Date().getFullYear()} KUFE. All rights reserved.
         </div>
       </div>
     </footer>

@@ -23,8 +23,7 @@ export function Header() {
         )}
       >
         <Link to="/" className={cn('flex items-center gap-2 font-semibold')}>
-          <span className={cn('text-xl font-bold text-emerald-500')}>web</span>
-          <span className={cn('text-xl font-bold')}>KUFE</span>
+          <span className={cn('text-xl font-bold text-emerald-500')}>KUFE</span>
         </Link>
 
         <nav className={cn('hidden md:flex')}>
