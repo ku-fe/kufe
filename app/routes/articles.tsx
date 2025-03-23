@@ -26,6 +26,7 @@ function mapArticleToUI(article: Article) {
     date: article.submitted_at,
     tags: article.categories,
     thumbnail: article.image_url,
+    url: article.url,
   };
 }
 
@@ -95,55 +96,62 @@ export default function Articles() {
         {/* Articles Grid */}
         <div className={cn('grid gap-6 md:grid-cols-2 lg:grid-cols-3')}>
           {articles.map((article) => (
-            <article
+            <a
               key={article.id}
-              className={cn(
-                'group flex flex-col rounded-lg border border-border/50 bg-card transition-all hover:border-border hover:shadow-md',
-              )}
+              href={article.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn('block')}
             >
-              <div
+              <article
                 className={cn(
-                  'relative aspect-video w-full overflow-hidden rounded-t-lg',
+                  'group flex flex-col rounded-lg border border-border/50 bg-card transition-all hover:border-border hover:shadow-md',
                 )}
               >
-                <img
-                  src={article.thumbnail}
-                  alt={article.title}
+                <div
                   className={cn(
-                    'h-full w-full object-cover transition-transform duration-300 group-hover:scale-105',
+                    'relative aspect-video w-full overflow-hidden rounded-t-lg',
                   )}
-                  loading="lazy"
-                />
-              </div>
-              <div className={cn('flex flex-col p-6')}>
-                <div className={cn('mb-4 flex items-center gap-2')}>
-                  {article.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className={cn(
-                        'rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary',
-                      )}
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                >
+                  <img
+                    src={article.thumbnail}
+                    alt={article.title}
+                    className={cn(
+                      'h-full w-full object-cover transition-transform duration-300 group-hover:scale-105',
+                    )}
+                    loading="lazy"
+                  />
                 </div>
-                <h2
-                  className={cn(
-                    'mb-2 text-xl font-semibold group-hover:text-primary',
-                  )}
-                >
-                  {article.title}
-                </h2>
-                <p
-                  className={cn(
-                    'mb-4 flex-grow text-muted-foreground line-clamp-3',
-                  )}
-                >
-                  {article.description}
-                </p>
-              </div>
-            </article>
+                <div className={cn('flex flex-col p-6')}>
+                  <div className={cn('mb-4 flex items-center gap-2')}>
+                    {article.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className={cn(
+                          'rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary',
+                        )}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <h2
+                    className={cn(
+                      'mb-2 text-xl font-semibold group-hover:text-primary',
+                    )}
+                  >
+                    {article.title}
+                  </h2>
+                  <p
+                    className={cn(
+                      'mb-4 flex-grow text-muted-foreground line-clamp-3',
+                    )}
+                  >
+                    {article.description}
+                  </p>
+                </div>
+              </article>
+            </a>
           ))}
         </div>
       </div>
