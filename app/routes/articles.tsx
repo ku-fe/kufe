@@ -111,7 +111,7 @@ export default function Articles() {
             >
               <article
                 className={cn(
-                  'group flex flex-col rounded-lg border border-border/50 bg-card transition-all hover:border-border hover:shadow-md',
+                  'group flex flex-col rounded-lg border border-border/50 bg-card transition-all hover:border-border hover:shadow-md h-[320px] md:h-[360px] lg:h-[400px]',
                 )}
               >
                 <div
@@ -128,7 +128,7 @@ export default function Articles() {
                     loading="lazy"
                   />
                 </div>
-                <div className={cn('flex flex-col p-3 sm:p-4')}>
+                <div className={cn('flex flex-col p-3 sm:p-4 flex-1')}>
                   <div
                     className={cn('mb-2 flex flex-wrap items-center gap-1.5')}
                   >
@@ -151,9 +151,7 @@ export default function Articles() {
                     {article.title}
                   </h2>
                   <p
-                    className={cn(
-                      'mb-0 flex-grow text-sm text-muted-foreground line-clamp-2',
-                    )}
+                    className={cn('text-sm text-muted-foreground line-clamp-3')}
                   >
                     {article.description}
                   </p>
