@@ -33,13 +33,13 @@ const features = [
 
 export function FeatureCards() {
   return (
-    <section className="py-20">
-      <div className="container">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    <section className="py-12 sm:py-16 md:py-20">
+      <div className="container px-3 sm:px-4 md:px-6">
+        <div className="grid grid-cols-1 gap-4 sm:gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="group relative overflow-hidden rounded-lg border border-border/50 bg-card p-6 transition-all hover:border-border hover:shadow-md"
+              className="group relative overflow-hidden rounded-lg border border-border/50 bg-card p-4 sm:p-6 transition-all hover:border-border hover:shadow-md"
             >
               <div
                 className={cn(

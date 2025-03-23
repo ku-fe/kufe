@@ -12,7 +12,11 @@ export function Layout({ children }: LayoutProps) {
     <ThemeProvider defaultTheme="system">
       <div className={cn('min-h-screen bg-background font-sans antialiased')}>
         <Header />
-        <main className={cn('container mx-auto px-4 py-8 md:px-6 lg:px-8')}>
+        <main
+          className={cn(
+            'container mx-auto px-3 py-6 sm:px-4 md:px-6 lg:px-8 md:py-8',
+          )}
+        >
           {children}
         </main>
         <Footer />
