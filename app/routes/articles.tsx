@@ -25,7 +25,9 @@ function mapArticleToUI(article: Article) {
     author: article.submitted_by,
     date: article.submitted_at,
     tags: article.categories,
-    thumbnail: article.image_url,
+    thumbnail:
+      article.image_url ||
+      `https://placehold.co/600x400/1a1a1a/ffffff?text=KUFE+Article`,
     url: article.url,
   };
 }
