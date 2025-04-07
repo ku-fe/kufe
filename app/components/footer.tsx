@@ -6,7 +6,6 @@ import { Button } from './ui/button';
 const quickLinks = [
   { label: 'About Us', href: '/about' },
   { label: 'Articles', href: '/articles' },
-  { label: 'Jobs', href: '/jobs' },
   { label: 'Q&A', href: '/qa' },
   { label: 'Contact', href: '/contact' },
 ];

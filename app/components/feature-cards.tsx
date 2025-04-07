@@ -1,8 +1,4 @@
-import {
-  BookOpen,
-  BriefcaseBusiness,
-  MessageCircleQuestion,
-} from 'lucide-react';
+import { BookOpen, MessageCircleQuestion } from 'lucide-react';
 import { Link } from 'react-router';
 import { cn } from '~/utils/cn';
 import { Button } from './ui/button';
@@ -14,13 +10,6 @@ const features = [
     icon: BookOpen,
     href: '/articles',
     bgClass: 'bg-blue-950 dark:bg-blue-900/20',
-  },
-  {
-    title: 'Job Opportunities',
-    description: 'Find your next role in tech.',
-    icon: BriefcaseBusiness,
-    href: '/jobs',
-    bgClass: 'bg-emerald-950 dark:bg-emerald-900/20',
   },
   {
     title: 'Q&A Forum',
