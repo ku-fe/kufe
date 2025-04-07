@@ -5,17 +5,17 @@ import { Button } from './ui/button';
 
 const features = [
   {
-    title: 'Latest Articles',
+    title: 'Articles',
     description: 'Discover insightful articles from our community.',
     icon: BookOpen,
     href: '/articles',
     bgClass: 'bg-blue-950 dark:bg-blue-900/20',
   },
   {
-    title: 'Q&A Forum',
+    title: 'Discussions',
     description: 'Get help from experienced developers.',
     icon: MessageCircleQuestion,
-    href: '/qa',
+    href: '/discussions',
     bgClass: 'bg-purple-950 dark:bg-purple-900/20',
   },
 ];
